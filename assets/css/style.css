@@ -514,9 +514,9 @@ section {
 }
 
 .pro-title{
-  font-weight: 800;
   text-align: center;
-  margin: 0.2em 0;
+  color: #18d26e;
+  margin: 0.4em 0;
   font-size: 20px;
 }
 .pro-btn{
@@ -536,8 +536,6 @@ section {
   /* text-wrap:balance; */
   text-align: justify;
   margin: 15px;
-  font-size:medium;
-  font-weight: bold;
 }
 .tech-list{
   display: flex;
@@ -554,10 +552,10 @@ section {
   background-color: #e6e9ec;
 
 }
-.pro-button:hover{
-  background-color: rgb(5, 99, 187);
+/* .pro-button:hover{
+  background-color: rgb(3, 214, 56);
   color: #fff;
-}
+} */
 @media (max-width: 320px) {
   .project-container{
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
