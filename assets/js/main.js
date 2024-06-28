@@ -1,11 +1,16 @@
-/**
-* Template Name: MyResume
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.getElementById('emailform');
+  form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      let fname=form.fname.value;
+      let lname=form.lname.value;
+      let subject=form.subject.value;
+      let msg=form.message.value;
+      console.log(fname,lname);
+      window.location.href=`mailto:krishgokul4002@gmail.com?subject=${encodeURIComponent(subject)}&body=I%20am%20${encodeURIComponent(fname)}%20${encodeURIComponent(lname)},%0A%09%09%09${encodeURIComponent(msg)}`;
+      form.reset();
+  });
+});
 (function() {
   "use strict";
 
@@ -268,4 +273,137 @@
    */
   new PureCounter();
 
-})()
+})();
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  var playContainer=document.querySelectorAll('.pro-image');
+  playContainer.forEach((container)=>{
+    container.classList.add('playBut');
+    var newElement=document.createElement("div");
+    newElement.classList.add('play-symbol');
+    if(window.innerWidth>600){
+    newElement.innerHTML=`
+    <div class='container'>
+    <a class='playBut'>        
+  <svg version="1.1"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+     x="0px" y="0px" width="100.7px" height="100.7px" viewBox="0 0 213.7 213.7" enable-background="new 0 0 213.7 213.7"
+     xml:space="preserve">
+  
+  <polygon class='triangle' id="XMLID_18_" fill="none" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+    73.5,62.5 148.5,105.8 73.5,149.1 "/>
+    
+  <circle class='circle' id="XMLID_17_" fill="none"  stroke-width="7" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="106.8" cy="106.8" r="103.3"/>
+  </svg>
+    </a>
+  </div>
+
+    `;
+  }else{
+    newElement.innerHTML=`
+    <div class="playbtn">
+       <div class="btn-container playBut">
+         <i class="fas fa-play"></i>
+       </div> 
+     </div>
+    `;
+  }
+    container.appendChild(newElement);
+  });
+
+  // var proimage=document.querySelectorAll('.pro-image img');
+  // proimage.forEach((img)=>{
+  //   img.addEventListener('mouseover',function(){
+  //     img.style.visibility='hidden';
+  //   });
+  // });
+
+  var progressBars = document.querySelectorAll('.progress');
+  progressBars.forEach((bar)=>{
+    bar.style.width=0;
+  });
+
+  var videos=document.querySelectorAll(".pro-image");
+
+  videos.forEach((mediaContainer)=>{
+  try{
+      var video=mediaContainer.querySelector('video');
+      var progressBar = mediaContainer.querySelector('.progress');
+      var clickImage=mediaContainer.querySelector('img');
+      var playBtn=mediaContainer.querySelector('.play-symbol');
+      
+
+      video.addEventListener('timeupdate', function() {
+        var value = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = value + '%';
+      });
+
+      mediaContainer.addEventListener('click', function() {
+        videos.forEach(function(othervideoContainer) {
+            if (othervideoContainer !== mediaContainer) {
+                var othervideo = othervideoContainer.querySelector('.bad-dash video');
+                var proimage=othervideoContainer.querySelector('img');
+                var playButton=othervideoContainer.querySelector('.play-symbol');
+                try{
+                  proimage.classList.remove('hideProImage');
+                  playButton.classList.remove('hideProImage');
+                    othervideo.pause();
+
+                }catch(err){}
+            }
+        });
+        if(video.paused){
+          clickImage.classList.add('hideProImage');
+          playBtn.classList.add('hideProImage');
+          video.play();
+        }else{
+          clickImage.classList.remove('hideProImage');
+          playBtn.classList.remove('hideProImage');
+          video.pause();
+        }
+    });
+    }catch(err){
+  }
+  });
+
+ 
+});
+window.onload = function() {
+
+  // https://firebasestorage.googleapis.com/v0/b/website-325dd.appspot.com/o/ProjectVideo%2FFood%20delivery%20website%20-%20Made%20with%20Clipchamp.mp4?alt=media&token=22d1e4c4-84e6-4eb2-a351-c9c2374f197e
+  // https://firebasestorage.googleapis.com/v0/b/website-325dd.appspot.com/o/ProjectVideo%2FHomeWithVoiceAssistant.mp4?alt=media&token=2213a4e2-d909-4388-baf4-1f8e4a18f437
+  // https://firebasestorage.googleapis.com/v0/b/website-325dd.appspot.com/o/ProjectVideo%2FChatApp.mp4?alt=media&token=fcdd21fd-765f-41ad-aaca-3032786c7c77
+  var images = document.querySelectorAll('img[data-src]');
+  
+  var imageno=[6,5,4,1,2,3];
+  let i=0;
+  images.forEach(function(img) {
+    if(i<6){
+      if (navigator.onLine) {
+        img.src=`https://firebasestorage.googleapis.com/v0/b/website-325dd.appspot.com/o/projectImage%2F${imageno[i]}.png?alt=media&token=09bd6c81-bf62-4a23-b181-6675248ce7bc`;
+        // img.src="";
+        console.log("You are online.");
+      } else {
+        img.src="assets/img/code-solid.svg";
+        console.log("You are offline.");
+      }
+    }
+    i++;
+  });
+  var videos = document.querySelectorAll('source[data-source]');
+  var vidsrc=["Food%20delivery%20website%20-%20Made%20with%20Clipchamp.mp4","HomeWithVoiceAssistant.mp4","ChatApp.mp4"];
+  let j=0;
+  videos.forEach(function(video) {
+    if(j<4){
+      if (navigator.onLine) {
+        video.src=`https://firebasestorage.googleapis.com/v0/b/website-325dd.appspot.com/o/ProjectVideo%2F${vidsrc[j]}?alt=media&token=22d1e4c4-84e6-4eb2-a351-c9c2374f197e`;
+        video.parentElement.load();
+      } else {
+        video.src="assets/img/placeholder.mp4";
+      }
+    }
+    j++;
+  });
+};

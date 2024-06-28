@@ -764,6 +764,7 @@ section {
   left: -11px;
 }
 
+
 .timeline-item-left::after {
   right: -11px;
 }
@@ -1026,7 +1027,6 @@ section {
 # Footer
 --------------------------------------------------------------*/
 #footer {
-  background: #f7f8f9;
   color: #45505b;
   font-size: 14px;
   text-align: center;
@@ -1098,6 +1098,9 @@ section {
   .timeline-item-left * {
     text-align: start;
   }
+  .timeline-item-right * {
+    text-align: start;
+  }
 
   .timeline-item-left::after {
     right: auto;
@@ -1109,6 +1112,20 @@ section {
   }
 }
 
+.myimg img{
+  border-radius: 10px;
+  box-shadow: rgb(38, 57, 77) 0px 20px 35px -10px;
+}
+
+@media screen and (max-width: 990px) {
+  .myname{
+    padding-top: 1em;
+  }
+}
+.techstack{
+  color:rgb(53, 53, 53);
+  font-size:medium;
+}
 /* about style */
 
 
